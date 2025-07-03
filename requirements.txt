@@ -3,4 +3,10 @@ Django==5.2.3
 gunicorn==21.2.0
 openpyxl==3.1.2  # Required by pandas for Excel file reading
 Pillow==10.2.0   # Optional: Remove if you don’t handle images
+<<<<<<< HEAD
 whitenoise
+=======
+whitenoise
+pandas>=1.5,<2.3
+numpy>=1.24,<1.27
+>>>>>>> d17bf9c93e25d1be80c7a1aa79725a0949b29c5a
