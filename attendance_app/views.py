@@ -5,6 +5,25 @@ from django.contrib import messages
 from .models import Student, Attendance
 from django.utils import timezone
 
+
+from django.contrib.auth import authenticate, login
+from django.shortcuts import render, redirect
+
+def admin_login(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None and user.is_superuser:
+            login(request, user)
+            return redirect('/admin/')  # Redirect to Django admin site
+        else:
+            return render(request, 'attendance_app/admin_login.html', {'error': 'Invalid superuser credentials'})
+    return render(request, 'attendance_app/admin_login.html')
+
+
 def home_view(request):
     return render(request, 'attendance_app/index.html')
 

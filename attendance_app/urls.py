@@ -21,6 +21,7 @@ urlpatterns = [
     path('student_daywise/',views.student_daywise,name='student_daywise'),
     path('student_dash/',views.student_dash,name='student_dash'),
     path('forgot/', views.student_forgot_password, name='student_forgot_password'),
+    path('admin_login/', views.admin_login, name='admin_login'),
 
 
 
