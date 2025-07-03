@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'add_student' %}">Add Student</a></li>
+            <li><a href="{% url 'mark_attendance' %}">Mark Attendance</a></li>
+            <li><a href="{% url 'attendance_report' %}">View Report</a></li>
+            <li><a href="{% url 'daywise' %}">Day wise Report</a></li>
+            <li><a href="{% url 'logout' %}" style="color: #f87171;">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Day wise Each Student Report</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Roll Number:</label>
+            <input type="text" name="roll_number"  required><br>
+            <button type="submit" id='daywise'>Search</button>
+        </form>
+        {% if student %}
+            <h2>Student Name: {{ student.name }}</h2>
+            <h2>Roll Number: {{ student.roll_number }}</h2>
+            <table border="1">
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                {% for records in attendance_records %}
+                <tr>
+                    <td>{{ records.date }}</td>
+                    <td>{% if records.is_present == True %}
+                        <span class="status-present">Present</span>
+                    {% else %}
+                        <span class="status-absent">Absent</span>
+                    {% endif %}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% elif roll_number %}
+            <p>No Student found for Roll Number: {{ roll_number }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

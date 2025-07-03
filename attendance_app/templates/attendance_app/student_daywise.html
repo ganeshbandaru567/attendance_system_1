@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .logout-btn {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .logout-btn a {
+            background-color: #ef4444;
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .logout-btn a:hover {
+            background-color:rgb(0, 0, 0);
+        }
+        .status-present {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .status-absent {
+            color: #ef4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'student_dashboard' %}">Student Attendance Report</a></li>
+            <li><a href="{% url 'student_daywise' %}">Student daywise Report</a></li>
+
+        </ul>
+    </div>
+
+    <div class="content">
+        <div style='display:flex; align-items: center; justify-content: space-between;'>
+            <div>
+                <h2 style='color:black; display:flex; text-algin:left;'>Student Daywise Attendance Report</h2>
+            </div>
+            <div class="logout-btn" style='margin-top:-30px;'>
+                <a href="{% url 'student_logout' %}">Logout</a>
+            </div>
+        </div>
+        {% if student %}
+            <h3 style='color:black; display:flex; text-algin:left;'>Student Name: {{ student.name }}</h3>
+            <h3 style='color:black; display:flex; text-algin:left;'>Roll Number: {{ student.roll_number }}</h3>
+            <table border="1">
+                <tr>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                {% for records in attendance_records %}
+                <tr>
+                    <td>{{ records.date }}</td>
+                    <td>{% if records.is_present == True %}
+                        <span class="status-present">Present</span>
+                    {% else %}
+                        <span class="status-absent">Absent</span>
+                    {% endif %}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% elif roll_number %}
+            <p>No Student found for Roll Number: {{ student.roll_number }}</p>
+        {% endif %}
+    </div>
+</body>
+</html>

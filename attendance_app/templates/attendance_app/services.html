@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="sec ser-sec">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Attendance</a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'login' %}">Portfolio</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-login">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </nav>
+                <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="mobile-sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">×</button>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'login' %}">Portfolio</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+        <div class="ser">
+            <h1>Transform Your Attendance Management Experience</h1>
+        </div>
+        <div class="ser-row">
+            <div class="ser-col">
+                <h2>Advanced Analytics</h2>
+                <p>Gain insights into attendance trends with advanced analytics tools, making data-driven decisions easier.</p>
+            </div>
+            <div class="ser-col">
+                <h2>Instant Alerts</h2>
+                <p>GGet real-time alerts for absences and tardiness, ensuring prompt attention to attendance discrepancies.</p>
+            </div>
+            <div class="ser-col">
+                <h2>Data Security</h2>
+                <p>Your attendance data is securely stored, with robust measures in place to protect against unauthorized access.</p>
+            </div>
+            <div class="ser-col">
+                <h2>User-Friendly Interface</h2>
+                <p>Our system is designed with an intuitive interface, making attendance management simple and straightforward.</p>
+            </div>
+        </div>
+        
+    </section>
+
+<script>
+    function toggleSidebar() {
+  const sidebar = document.getElementById("mobileSidebar");
+  sidebar.classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>

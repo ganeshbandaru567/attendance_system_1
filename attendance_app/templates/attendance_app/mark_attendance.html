@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'add_student' %}">Add Student</a></li>
+            <li><a href="{% url 'mark_attendance' %}">Mark Attendance</a></li>
+            <li><a href="{% url 'attendance_report' %}">View Report</a></li>
+            <li><a href="{% url 'daywise' %}">Day wise Report</a></li>
+            <li><a href="{% url 'logout' %}" style="color: #f87171;">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Mark Attendance</h2>
+        <form method="POST">
+            {% csrf_token %}
+            <label>Select Section:</label>
+            <select name="section" onchange="this.form.submit()">
+                <option value="">Select</option>
+                <option value="ECE-A">ECE-A</option>
+                <option value="ECE-B">ECE-B</option>
+                <option value="ECE-C">ECE-C</option>
+                <option value="ECE-D">ECE-D</option>
+            </select>
+        </form>
+
+        {% if students %}
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="section" value="{{ students.0.section }}">
+            <table border="1">
+                <tr>
+                    <th>Roll No</th>
+                    <th>Name</th>
+                    <th>Present</th>
+                    <th>Absent</th>
+                </tr>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.roll_number }}</td>
+                    <td>{{ student.name }}</td>
+                    <td><input type="radio" name="attendance_{{ student.id }}" value="present" required></td>
+                    <td><input type="radio" name="attendance_{{ student.id }}" value="absent"></td>
+                </tr>
+                {% endfor %}
+            </table>
+            <br>
+            <button type="submit" name="submit_attendance">Submit Attendance</button>
+        </form>
+
+        {% endif %}
+    </div>
+</body>
+</html>

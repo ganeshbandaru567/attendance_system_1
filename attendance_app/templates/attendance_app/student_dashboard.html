@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .logout-btn {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .logout-btn a {
+            background-color: #ef4444;
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .logout-btn a:hover {
+            background-color:rgb(0, 0, 0);
+        }
+        .status-present {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .status-absent {
+            color: #ef4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'student_dashboard' %}">Student Attendance Report</a></li>
+            <li><a href="{% url 'student_daywise' %}">Student daywise Report</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <div style='display:flex; align-items: center; justify-content: space-between;'>
+            <div>
+                <h1 style='color:black; display:flex; text-algin:left;'>Welcome, {{student.name}}</h1>
+            </div>
+            <div class="logout-btn" style='margin-top:1px;'>
+                <a href="{% url 'student_logout' %}">Logout</a>
+            </div>
+        </div>
+
+        <table border="1">
+            <tr>
+                <th>Student Name:</th>
+                <td>{{ student.name }}</td>
+            </tr>
+            <tr>
+                <th>Roll Number:</th>
+                <td>{{ student.roll_number }}</td>
+            </tr>
+            <tr>
+                <th>Section:</th>
+                <td>{{ student.section }}</td>
+            </tr>
+            <tr>
+                <th>Date:</th>
+                <td>{{ today }}</td>
+            </tr>
+            <tr>
+                <th>Today Status:</th>
+                <td>{% if today_status == "Present" %}
+                        <span class="status-present">Present</span>
+                    {% else %}
+                        <span class="status-absent">Absent</span>
+                    {% endif %}</td>
+            </tr>
+            <tr>
+                <th>Days present:</th>
+                <td>{{ days_present }}/{{ total_days }}</td>
+            </tr>
+            <tr>
+                <th>Attendance%:</th>
+                <td>{{ attendance_percent }}%</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

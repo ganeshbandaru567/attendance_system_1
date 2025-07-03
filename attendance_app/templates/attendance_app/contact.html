@@ -1,0 +1,130 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="sec sec-con">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Attendance</a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'login' %}">Portfolio</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-login">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </nav>
+        <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="mobile-sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">×</button>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'login' %}">Portfolio</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                
+        <div class="con-1">
+            <h1>Get in Touch</h1>
+            <p>We'd love to hear from you! Reach out to us anytime.</p>
+        </div>
+        <div class="con-row">
+            <div class="conrow-1">
+                <div class="con-col">
+                    <h3>Address</h3>
+                    <ul>
+                        <li>A108 Adam Street,</li>
+                        <li>New York, NY 535022</li>
+                    </ul>
+                </div>
+                <div class="con-col">
+                    <h3>Call Us</h3>
+                    <ul>
+                        <li>+1 5589 55488 55</li>
+                        <li>+1 6678 254445 41</li>
+                    </ul>
+                </div>
+                <div class="con-col">
+                    <h3>Email Us</h3>
+                    <ul>
+                        <li>info@example.com</li>
+                        <li>contact@example.com</li>
+                    </ul>
+                </div>
+                <div class="con-col">
+                    <h3>Open Hours</h3>
+                    <ul>
+                        <li>Monday - Friday</li>
+                        <li>9:00AM - 05:00PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="conrow-2">
+                <input placeholder="Your Name" class="search-input search">
+                <input placeholder="Your Email" class="search-input">
+                <input placeholder="Subject" class="search-input">
+                <input placeholder="Message" class="search-input ser-msg">
+                <p id="charCount" style="color: white; text-align: right; margin-right: 10px; margin-top: -10px;">0 / 300</p>
+                <button>Send message</button>
+            </div>
+        </div>
+    </section>
+<script>
+    function toggleSidebar() {
+  const sidebar = document.getElementById("mobileSidebar");
+  sidebar.classList.toggle("active");
+}
+
+document.addEventListener("DOMContentLoaded", function () {
+        const sendBtn = document.querySelector(".conrow-2 button");
+
+        if (sendBtn) {
+            sendBtn.addEventListener("click", function () {
+                const name = document.querySelector(".search").value;
+                const email = document.querySelectorAll(".search-input")[1].value;
+                const subject = document.querySelectorAll(".search-input")[2].value;
+                const message = document.querySelector(".ser-msg").value;
+
+                if (!name || !email || !subject || !message) {
+                    alert("Please fill in all fields before submitting.");
+                } else {
+                    alert("Thank you, " + name + "! Your message has been sent.");
+                }
+            });
+        }
+    });
+
+document.addEventListener("DOMContentLoaded", function () {
+    const messageBox = document.querySelector(".ser-msg");
+    const charCounter = document.getElementById("charCount");
+
+    if (messageBox && charCounter) {
+        messageBox.addEventListener("input", function () {
+            charCounter.textContent = `${messageBox.value.length} / 300`;
+        });
+    }
+});
+
+</script>
+
+
+    
+</body>
+</html>

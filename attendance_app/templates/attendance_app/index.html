@@ -1,0 +1,153 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="sec">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Attendance</a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'login' %}">Portfolio</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-login">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </nav>
+                <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="mobile-sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">×</button>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'login' %}">Portfolio</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+
+        <div class="main">
+            <div class="main-1">
+                <h2 id="greeting" style="color: white;"></h2>
+                <h1>Smart Attendance Management System</h1>
+                <p>Manage student attendance effortlessly with our smart, user-friendly system designed 
+                <br>for seamless efficiency.</p>
+                <a href="#" class="main-btn" onclick="scrollToSection()">Learn more</a>
+            </div>
+            <div class="main-img">
+                <img src="{% static 'images/hero-img.png' %}">
+            </div>
+        </div>
+    </section>
+
+    <section class="key" id='key1'>
+        <h1>Key Features</h1>
+        <div class="key-row">
+            <div class="key-col">
+                <h3>Admin Dashboard</h3>
+                <p>Handle every component of the attendance system, from user management
+                   to tracking attendance records and creating detailed reports.</p>
+            </div>
+            <div class="key-col">
+                <h3>Trainer Portal</h3>
+                <p>Trainers can efficiently record student attendance
+                     and access comprehensive records for their classes.
+                    </p>
+            </div>
+            <div class="key-col">
+                <h3>Student Access</h3>
+                <p>Students can easily track their attendance history and get 
+                    real-time notifications about their attendance status..</p>
+                
+            </div>
+        </div>
+    </section>
+
+    <section class="started">
+        <div class="start-row">
+            <h1>Ready to Get Started?</h1>
+            <p>Start managing attendance efficiently with our modern and user-friendly system.</p>
+        </div>
+    </section>
+   
+    <footer>
+        <div class="footer">
+            <div class="footer-section">
+              <h3>Attendance Management System</h3>
+              <ul>
+                <li>A comprehensive solution to manage student attendance,offering features for admin,trainers, and students.</li>
+              </ul>
+            </div>
+          
+            <div class="footer-section">
+              <h3>Quick Links</h3>
+              <ul class="quick-links">
+                <li><a href="{% url 'about' %}">About Us</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'contact' %}">Contact Us</a></li>
+              </ul>
+            </div>
+          
+            <div class="footer-section ftr">
+              <h3>Contact Information</h3>
+              <ul>
+                <li>Email: info@attendance.com</li>
+                <li>Phone: +1 234 567 890</li>
+              </ul>
+            </div>
+          </div>
+        
+    </footer>
+<script >
+    function toggleSidebar() {
+  const sidebar = document.getElementById("mobileSidebar");
+  sidebar.classList.toggle("active");
+}
+document.addEventListener("DOMContentLoaded", function () {
+    const greeting = document.getElementById("greeting");
+
+    if (greeting) {
+        const hour = new Date().getHours();
+        let text = "Welcome!";
+        if (hour < 12) text = "Good Morning!";
+        else if (hour < 18) text = "Good Afternoon!";
+        else text = "Good Evening!";
+        greeting.textContent = text;
+    }
+});
+document.addEventListener("DOMContentLoaded", function () {
+    const links = document.querySelectorAll(".nav-links ul li a");
+    const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+
+    links.forEach(link => {
+        const linkPath = new URL(link.href).pathname.replace(/\/+$/, '');
+        if (linkPath === currentPath) {
+            link.classList.add("active-link");
+        }
+    });
+});
+
+function scrollToSection() {
+  document.getElementById("key1").scrollIntoView({ behavior: "smooth" });
+}
+
+</script>
+
+</body>
+</html>

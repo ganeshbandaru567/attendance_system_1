@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        .logout-btn {
+            text-align: left;
+            margin-top: 30px;
+        }
+
+        .logout-btn a {
+            background-color: #ef4444;
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .logout-btn a:hover {
+            background-color:rgb(0, 0, 0);
+        }
+        .status-present {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .status-absent {
+            color: #ef4444;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'student_dashboard' %}">Student Attendance Report</a></li>
+            <li><a href="{% url 'student_daywise' %}">Student daywise Report</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        
+    </div>
+</body>
+</html>

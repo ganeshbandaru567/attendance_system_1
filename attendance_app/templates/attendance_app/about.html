@@ -1,0 +1,77 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <section class="sec about-sec">
+        <nav>
+            <div class="nav-logo">
+                <a href="index.html">Attendance</a>
+            </div>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    <li><a href="{% url 'services' %}">Services</a></li>
+                    <li><a href="{% url 'login' %}">Portfolio</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                </ul>
+            </div>
+            <div class="nav-login">
+                <a href="{% url 'login' %}">Login</a>
+            </div>
+        </nav>
+                        <!-- Mobile Sidebar -->
+        <div id="mobileSidebar" class="mobile-sidebar">
+            <button class="close-btn" onclick="toggleSidebar()">×</button>
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'services' %}">Services</a></li>
+                <li><a href="{% url 'login' %}">Portfolio</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+            </ul>
+        </div>
+
+        <!-- Hamburger Button -->
+        <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+
+        <div class='aboutgan'>
+            <div class="about-h1">
+                <h1>Attendance Management System</h1>
+            </div>
+            <div class="a-row">
+                <div class="about-1">
+                    <h2>Student Login:</h2>
+                    <p>Access attendance records, view schedules, and receive notifications. A user-friendly interface designed for students.</p>
+                </div>
+                <div class="about-1">
+                    <h2>Trainee Login:</h2>
+                    <p>Mark attendance, generate reports, and communicate with students. Simplifies class management for trainers.</p>
+                </div>
+                <div class="about-1">
+                    <h2>Admin Login:</h2>
+                    <p>Full access to manage user accounts, customize settings, and generate comprehensive reports.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleSidebar() {
+  const sidebar = document.getElementById("mobileSidebar");
+  sidebar.classList.toggle("active");
+}
+
+    </script>
+
+</body>
+</html>
+
+    
+        

@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance Report</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="sidebar">
+        <ul>
+            <li><a href="{% url 'add_student' %}">Add Student</a></li>
+            <li><a href="{% url 'mark_attendance' %}">Mark Attendance</a></li>
+            <li><a href="{% url 'attendance_report' %}">View Report</a></li>
+            <li><a href="{% url 'daywise' %}">Day wise Report</a></li>
+            <li><a href="{% url 'logout' %}" style="color: #f87171;">Logout</a></li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Attendance Report</h2>
+        <form method="GET">
+            <label>Select Section:</label>
+            <select name="section" onchange="this.form.submit()">
+                <option value="">Select</option>
+                <option value="ECE-A" {% if section == "ECE-A" %}selected{% endif %}>ECE-A</option>
+                <option value="ECE-B" {% if section == "ECE-B" %}selected{% endif %}>ECE-B</option>
+                <option value="ECE-C" {% if section == "ECE-C" %}selected{% endif %}>ECE-C</option>
+                <option value="ECE-D" {% if section == "ECE-D" %}selected{% endif %}>ECE-D</option>
+            </select>
+        </form>
+
+        {% if students %}
+        <table border="1">
+            <tr>
+                <th>Roll No</th>
+                <th>Name</th>
+                <th>Days Present</th>
+                <th>Attendance %</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.roll_number }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.present_count }}/{{ student.total_days }}</td>
+                <td>{{ student.attendance_percent }}%</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>

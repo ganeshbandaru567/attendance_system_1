@@ -1,0 +1,104 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Dashboard</title>
+    <style>
+        body {
+            background-color:rgb(255, 255, 255);
+            font-family: 'Segoe UI', sans-serif;
+            color: #f1f5f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background-color: #1e293b;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        }
+
+        h2 {
+            text-align: center;
+            color: #22c55e;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 18px;
+            margin: 12px 0;
+            line-height: 1.6;
+        }
+
+        strong {
+            color:rgb(106, 106, 216);
+        }
+
+        .status-present {
+            color: #10b981;
+            font-weight: bold;
+        }
+
+        .status-absent {
+            color: #ef4444;
+            font-weight: bold;
+        }
+
+        .logout-btn {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .logout-btn a {
+            background-color: #ef4444;
+            padding: 12px 24px;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .logout-btn a:hover {
+            background-color: #dc2626;
+        }
+
+        @media (max-width: 650px) {
+            .container {
+                margin: 30px 20px;
+                padding: 25px;
+            }
+
+            p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ student.name }}</h2>
+        <p><strong>Student Name:</strong> {{ student.name }}</p>
+        <p><strong>Roll Number:</strong> {{ student.roll_number }}</p>
+        <p><strong>Section:</strong> {{ student.section }}</p>
+        <p><strong>Date:</strong> {{ today }}</p>
+        <p><strong>Status Today:</strong> 
+            {% if today_status == "Present" %}
+                <span class="status-present">Present</span>
+            {% else %}
+                <span class="status-absent">Absent</span>
+            {% endif %}
+        </p>
+        <p><strong>Days Present:</strong> {{ days_present }}/{{ total_days }}</p>
+        <p><strong>Attendance %:</strong> {{ attendance_percent }}%</p>
+
+        <div class="logout-btn">
+            <a href="{% url 'student_logout' %}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>
