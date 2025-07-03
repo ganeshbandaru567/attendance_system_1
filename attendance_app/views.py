@@ -42,7 +42,7 @@ def employee_login(request):
 def dashboard(request):
     return render(request, 'attendance_app/dashboard.html')
 
-'''
+
 @login_required(login_url='/login/')
 def add_student(request):
     if request.method == 'POST':
@@ -107,7 +107,7 @@ def add_student(request):
     students = Student.objects.all()
     return render(request, 'attendance_app/add_student.html', {'students': students})
 
-
+'''
 
 
 from datetime import date
